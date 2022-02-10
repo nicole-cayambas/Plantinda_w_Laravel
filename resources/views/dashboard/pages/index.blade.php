@@ -1,8 +1,8 @@
-@extends('layouts.app')
-@section('content')
-    <div class="flex justify-center">
-        <div class="w-8/12 bg-white p-6 rounded-lg">
-            
-        </div>
-    </div>
+@extends('dashboard.layouts.app')
+@section('dash_content')
+@auth
+<div class="">
+    <h1>Good Day {{Auth()->user()->first_name}}!</h1>
+</div>
+@endauth
 @endsection

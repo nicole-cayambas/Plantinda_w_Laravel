@@ -21,12 +21,9 @@ class LoginController extends Controller
         ]);
 
         if(!auth()->attempt($request->only('email', 'password'), $request->remember)){
-            return back()->with('status', 'Invalid credentials');
+            return redirect()->back()->with('status', 'Invalid credentials');
         }
-        if(auth()->user()->user_type === "seller"){
-            return redirect()->route('dashboard');
-        }else{
-            return redirect()->route('home');
-        }
+        
+        return redirect()->back();
     }
 }

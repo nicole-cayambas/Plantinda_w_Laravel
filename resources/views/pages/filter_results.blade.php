@@ -30,7 +30,9 @@
           <div class="border-t border-gray-200 px-4 py-6">
             <h3 class="-mx-2 -my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <span class="font-medium text-gray-900"> Rating </span>
+              <button type="button" class="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500" aria-controls="filter-section-mobile-1" aria-expanded="false">
+                <span class="font-medium text-gray-900"> Category </span>
+              </button>
             </h3>
             <!-- Filter section, show/hide based on section state. -->
             <form id="filters_form" action="{{route('applyFilter')}}" method="get" class="pt-6" id="filter-section-mobile-1">
@@ -66,42 +68,44 @@
           <div class="border-t border-gray-200 px-4 py-6">
             <h3 class="-mx-2 -my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <span class="font-medium text-gray-900"> Price </span>
+              <button type="button" class="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500" aria-controls="filter-section-mobile-2" aria-expanded="false">
+                <span class="font-medium text-gray-900"> Price </span>
+              </button>
             </h3>
             <!-- Filter section, show/hide based on section state. -->
-            <form action="{{route('applyFilter')}}" method="get" class="pt-6" id="filter-section-mobile-2">
+            <div class="pt-6" id="filter-section-mobile-2">
               <div class="space-y-6">
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-mobile-size-0" name="price" value="500" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-mobile-size-0" name="size[]" value="2l" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-mobile-size-0" class="ml-3 min-w-0 flex-1 text-gray-500"> < Php 500 </label>
                 </div>
               
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-mobile-size-1" name="price" value="1000" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-mobile-size-1" name="size[]" value="6l" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-mobile-size-1" class="ml-3 min-w-0 flex-1 text-gray-500"> Php 501 - Php 1000 </label>
                 </div>
 
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-mobile-size-2" name="price" value="5000" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-mobile-size-2" name="size[]" value="12l" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-mobile-size-2" class="ml-3 min-w-0 flex-1 text-gray-500"> Php 1001 - Php 5000 </label>
                 </div>
 
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-mobile-size-3" name="price" value="10000" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-mobile-size-3" name="size[]" value="18l" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-mobile-size-3" class="ml-3 min-w-0 flex-1 text-gray-500"> Php 5001 - Php 10000 </label>
                 </div>
 
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-mobile-size-4" name="price" value="20000" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-mobile-size-4" name="size[]" value="20l" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-mobile-size-4" class="ml-3 min-w-0 flex-1 text-gray-500"> Php 10001 - Php 20000 </label>
                 </div>
 
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-mobile-size-5" name="price" value="6" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-mobile-size-5" name="size[]" value="40l" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-mobile-size-5" class="ml-3 min-w-0 flex-1 text-gray-500"> > Php 20001 </label>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -110,6 +114,8 @@
     <main class="w-full mx-auto px-4 sm:px-6 lg:px-8">
       <div class="relative z-10 flex items-baseline justify-between pt-6 pb-6 border-b border-gray-200">
         <h1 class="text-2xl font-bold tracking-tight text-gray-900">Home</h1>
+
+        <div> Showing results with '{{Request::input('rating')}} star' filter</div>
 
         <div class="flex items-center">
           <div class="relative inline-block text-left">
@@ -164,7 +170,9 @@
           <div class="border-b border-gray-200 py-6">
             <h3 class="-my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <span class="font-medium text-gray-900"> Rating </span>
+              <button type="button" class="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
+                <span class="font-medium text-gray-900"> Rating </span>
+              </button>
             </h3>
             <!-- Filter section, show/hide based on section state. -->
             <form id="filters_form" action="{{route('applyFilter')}}" method="get" class="pt-6" id="filter-section-1">
@@ -199,38 +207,40 @@
           <div class="border-b border-gray-200 py-6">
             <h3 class="-my-3 flow-root">
               <!-- Expand/collapse section button -->
-              <span class="font-medium text-gray-900"> Price </span>
+              <button type="button" class="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-2" aria-expanded="false">
+                <span class="font-medium text-gray-900"> Price </span>
+              </button>
             </h3>
             <!-- Filter section, show/hide based on section state. -->
-            <div action="{{route('applyFilter')}}" method="get" class="pt-6" id="filter-section-2">
+            <div class="pt-6" id="filter-section-2">
               <div class="space-y-4">
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-size-0" name="price" value="1" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-size-0" name="size[]" value="2l" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-size-0" class="ml-3 text-sm text-gray-600"> < Php 500 </label>
                 </div>
   
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-size-1" name="price" value="2" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-size-1" name="unit_price" value="6l" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-size-1" class="ml-3 text-sm text-gray-600"> Php 501 - Php 1000 </label>
                 </div>
   
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-size-2" name="price" value="3" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-size-2" name="unit_price" value="12l" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-size-2" class="ml-3 text-sm text-gray-600"> Php 1001 - Php 5000 </label>
                 </div>
 
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-size-3" name="price" value="4" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-size-3" name="unit_price" value="18l" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-size-3" class="ml-3 text-sm text-gray-600"> Php 5001 - Php 10000 </label>
                 </div>
 
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-size-4" name="price" value="5" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-size-4" name="unit_price" value="20l" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-size-4" class="ml-3 text-sm text-gray-600"> Php 10001 - Php 20000 </label>
                 </div>
 
                 <div class="flex items-center">
-                  <input onClick="applyFilter(this)" id="filter-size-5" name="price" value="6" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <input id="filter-size-5" name="unit_price" value="40l" type="radio" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                   <label for="filter-size-5" class="ml-3 text-sm text-gray-600"> Php 20001 </label>
                 </div>
               </div>
@@ -239,23 +249,25 @@
         </div>
 
           <!-- Product grid -->
-        <div class="lg:col-span-4">
+          <div class="lg:col-span-4">
             <!-- Replace with your content -->
             @include('inc.product-grid')
+            
             <!-- /End replace -->
-        </div>
+          </div>
         </div>
       </section>
     </main>
   </div>
 </div>
 </div>
+
 <script>
-  function applyFilter(src){
-    if(src.checked){ 
-      src.form.submit();
+    function applyFilter(src){
+        if(src.checked){ 
+        src.form.submit();
+        }
     }
-  }
   function toggleFilter(){
       const filter = document.getElementById('filter');
       filter.classList.toggle('hidden');

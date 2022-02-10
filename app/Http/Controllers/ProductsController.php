@@ -4,37 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Cart_item;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $products = Product::orderBy('created_at', 'desc')->paginate(30); //for pagination
-        
-        return view('products.index')->with('products', $products);
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -53,29 +28,6 @@ class ProductsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -84,5 +36,20 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $categories = Category::orderBy('parent_id', 'desc')->get();
+        $products = Product::where('name', 'like', "%{$request->input('search')}%")->orderBy('created_at', 'desc')->paginate(30);
+        return view('pages.search_results')->with('products', $products)->with('categories', $categories);
+    }
+    
+    public function applyFilter(Request $request){
+        $categories = Category::orderBy('parent_id', 'desc')->get();
+        $products = Product::where('rating', (int)$request->input('rating'))->orderBy('created_at', 'desc')->paginate(30);
+        // $products = Product::where('unit_price_1', '<', (int)$request->input('price'))->orderBy('created_at', 'desc')->paginate(30);
+        // dd($products);
+        return view('pages.filter_results')->with('products', $products)->with('categories', $categories);
     }
 }

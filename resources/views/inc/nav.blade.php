@@ -1,31 +1,4 @@
-{{-- <nav class="p-6 bg-white flex justify-between mb-6">
-    <ul class="flex items-center">
-        <li>
-            <a href="/" class="p-3">Home</a>
-        </li>
-        <li>
-            <a href="/dashboard" class="p-3">Dashboard</a>
-        </li>
-        <li>
-            <a href="/products" class="p-3">Products</a>
-        </li>
-    </ul>
-    <ul class="flex items-center">
-        <li>
-            <a href="" class="p-3">Nicole</a>
-        </li>
-        <li>
-            <a href="/register" class="p-3">Register</a>
-        </li>
-        <li>
-            <a href="" class="p-3">Login</a>
-        </li>
-        <li>
-            <a href="" class="p-3">Logout</a>
-        </li>
-    </ul>
-</nav> --}}
-<div class="bg-white flex flex-col w-full items-left justify-between px-8 py-6 mb-6 sm:flex-row sm:items-center">
+<div class="bg-white flex flex-col w-full items-left justify-between px-8 py-6 sm:flex-row sm:items-center">
     <div class="flex-none w-1/2 sm:w-1/6 flex items-center justify-between">
         <button class="sm:hidden" onclick="toggleMenu()">
             <svg class="" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -40,7 +13,7 @@
         </a>
     </div>
     
-        <form action="" class="border-2 rounded-3xl px-6 py-2 sm:mx-4 my-4 sm:my-0 sm:w-3/6 w-full flex flex-initial justify-between">
+        <form action="{{route('search')}}" method="GET" class="border-2 rounded-3xl px-6 py-2 sm:mx-4 my-4 sm:my-0 sm:w-3/6 w-full flex flex-initial justify-between">
             <input type="text" name="search" placeholder="Search..." class="w-full focus:outline-none">
             <button type="submit" class="justify-end">
                 <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -128,8 +101,10 @@
         <div id="menu_wrap" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
           <!-- Active: "bg-gray-100", Not Active: "" -->
           @auth
-          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300" role="menuitem" tabindex="-1">Your Profile</a>
+          <a href="{{route('profile')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300" role="menuitem" tabindex="-1">Your Profile</a>
+          @if (Auth::user()->user_type!='buyer')
           <a href="{{route('dashboard')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300" role="menuitem" tabindex="-1">Dashboard</a>
+          @endif
           <form action="{{route('logout')}}" method="POST">
             @csrf
             <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-red-400 hover:bg-gray-300" role="menuitem" tabindex="-1">Logout</button>
@@ -153,9 +128,12 @@
           </button>
         
         <ul id="profile-menu" class="hidden flex flex-col">
-            <a href="{{route('profile')}}" class="p-2">Edit Profile</a>
+            <a href="{{route('profile')}}" class="p-2">Your Profile</a>
             <a href="{{route('dashboard')}}" class="p-2">Dashboard</a>
-            <a href="{{route('logout')}}" class="p-2 text-red-400">Logout</a>
+            <form action="{{route('logout')}}" method="POST" class="p-2">
+              @csrf
+              <button type="submit" class="w-full text-left text-red-400 hover:bg-gray-300" role="menuitem" tabindex="-1">Logout</button>
+            </form>
         </ul>
         @endauth
         @guest

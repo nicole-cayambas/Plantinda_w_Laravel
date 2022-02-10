@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class PagesController extends Controller
 {
     public function index(){
+        $categories = Category::orderBy('parent_id', 'desc')->get();
         $products = Product::orderBy('created_at', 'desc')->paginate(30); //for pagination
-        return view('pages.index')->with('products', $products);
+        return view('pages.index')->with('products', $products)->with('categories', $categories);
     }
     public function wishlist(){
         $title = "Wishlist";
@@ -17,15 +19,5 @@ class PagesController extends Controller
     }
     public function orders(){
         return view('pages.orders');
-    }
-    public function profile(){
-        return view('pages.profile');
-    }
-    public function cart(){
-        $data = array(
-            'title'=>'cart',
-            'services'=>['Seed', 'Soil', 'Tools']
-        );
-        return view('pages.cart')->with($data);
     }
 }
