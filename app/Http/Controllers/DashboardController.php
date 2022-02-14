@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Order;
+use App\Models\Store;
 
 class DashboardController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index(){
         
         if(auth()->user()->user_type === 'buyer') {
@@ -23,7 +22,9 @@ class DashboardController extends Controller
     }
     public function orders()
     {
-        return view('dashboard.pages.orders');
+        $store = Store::where('seller_id', auth()->user()->id)->first();
+        $orders = Order::where('store_id', auth()->user()->id)->get();
+        return view('dashboard.pages.orders')->with('orders', $orders)->with('store', $store);
     }
     public function earnings()
     {

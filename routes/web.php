@@ -10,7 +10,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendOrderController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\DashboardProductsController;
 
@@ -29,8 +29,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::post('/sendOrder/{id}', [SendOrderController::class, 'store'])->name('sendOrder')->middleware('auth');
 Route::get('/cart/product/{id}', [CartController::class, 'destroy'])->name('deleteCartItem')->middleware('auth');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkoutPage')->middleware('auth');
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout')->middleware('auth');
+Route::post('/checkout', [OrdersController::class, 'store'])->name('checkout')->middleware('auth');
+Route::get('/checkout/confirm', [OrdersController::class, 'confirm'])->name('orderConfirmation')->middleware('auth');
+Route::post('/checkout/address', [OrdersController::class, 'finalizeAddress'])->name('finalizeAddress')->middleware('auth');
 
 
 Route::get('/search', [ProductsController::class, 'search'])->name('search');

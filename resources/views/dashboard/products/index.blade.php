@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 @section('dash_content')
-    <div class="w-full flex flex-col gap-y-4 justify-between">
+    <div class="w-full mt-2 sm:m-10 flex flex-col gap-y-4 justify-between">
         @if (count($products) > 0)
         @foreach ($products as $product)
             <div class="bg-white shadow-md p-8 rounded-lg">

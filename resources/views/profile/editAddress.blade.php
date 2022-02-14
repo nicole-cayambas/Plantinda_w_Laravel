@@ -2,6 +2,9 @@
 @section('content')
 <div class="p-4 sm:p-12">
 <div class="mt-10 sm:mt-0">
+  <p class="w-full text-center m-4 bg-slate-200 text-emerald-600">
+    {{session('success')}}
+  </p>
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">

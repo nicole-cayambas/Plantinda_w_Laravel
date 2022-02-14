@@ -32,23 +32,35 @@
                                 $product = App\Models\Product::find($cart_item->product_id);
                             @endphp
                             <tr class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
-                                <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$product->name}} <br> <br> <img src="{{$product->image}}" alt="{{$product->name}} picture" width="100px" height="100px">
-                                </td>
-                                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    {{$cart_item->quantity}} x Php {{number_format($cart_item->unit_price, 2)}}
-                                </td>
-                                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    Php {{$cart_item->shipping_price}}
-                                </td>
-                                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    Php {{$cart_item->total_price}}
-                                </td>
-                                <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                    <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a><br>
-                                    {{-- <a href="{{route('editCartItem'), ['id', $product->id]}}" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a><br> --}}
-                                    <a href="{{route('deleteCartItem', ['id' => $product->id])}}" class="text-red-600 dark:text-red-500 hover:underline">Delete</a>
-                                </td>
+                                <form action="{{route('sendOrder', ['id', $cart_item->id])}}" method="POST">
+                                    @csrf
+                                    <input type="number" name="product_id" value="{{$product->id}}" hidden>
+                                    <input type="text" name="product_name" value="{{$product->name}}" hidden>
+                                    <input type="number" name="quantity" value="{{$cart_item->quantity}}" hidden>
+                                    <input type="number" name="price" value="{{$cart_item->unit_price}}" hidden>
+                                    <input type="number" name="shipping_price" value="{{$cart_item->shipping_price}}" hidden>
+                                    <input type="number" name="total_price" value="{{$cart_item->total_price}}" hidden>
+                                    <input type="number" name="cart_id" value="{{$cart_item->id}}" hidden>
+                                    <input type="radio" name="from_cart" checked hidden>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{$product->name}} <br> <br> <img src="{{$product->image}}" alt="{{$product->name}} picture" width="100px" height="100px">
+                                    </td>
+                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        {{$cart_item->quantity}} x Php {{number_format($cart_item->unit_price, 2)}}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        Php {{$cart_item->shipping_price}}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        Php {{$cart_item->total_price}}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-center whitespace-nowrap">
+                                        <button name="submit" value="sendOrder" class="p-4 hover:bg-slate-400 text-center bg-slate-200 rounded-lg " type="submit">Checkout</button>
+                                        <br>
+                                        {{-- <a href="{{route('editCartItem'), ['id', $product->id]}}" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a><br> --}}
+                                        <a href="{{route('deleteCartItem', ['id' => $product->id])}}" class="text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                                    </td>
+                                </form>
                             </tr>
                         @endforeach
                     </tbody>

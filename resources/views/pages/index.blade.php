@@ -34,31 +34,38 @@
             </h3>
             <!-- Filter section, show/hide based on section state. -->
             <form id="filters_form" action="{{route('applyFilter')}}" method="get" class="pt-6" id="filter-section-mobile-1">
-              <div class="space-y-6">
-                <div class="flex items-center">
-                  <input onClick="applyFilter(this)" type="radio" id="filter-mobile-category-0" name="rating" value="1" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-0" class="ml-3 min-w-0 flex-1 text-gray-500"> ⭐ </label>
-                </div>
-              
-                <div class="flex items-center">
-                  <input onClick="applyFilter(this)" type="radio" id="filter-mobile-category-1" name="rating" value="2" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-1" class="ml-3 min-w-0 flex-1 text-gray-500"> ⭐⭐ </label>
-                </div>
-
-                <div class="flex items-center">
-                  <input onClick="applyFilter(this)" type="radio" id="filter-mobile-category-2" name="rating" value="3" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-2" class="ml-3 min-w-0 flex-1 text-gray-500"> ⭐⭐⭐ </label>
-                </div>
-
-                <div class="flex items-center">
-                  <input onClick="applyFilter(this)" type="radio" id="filter-mobile-category-3" name="rating" value="4" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-3" class="ml-3 min-w-0 flex-1 text-gray-500"> ⭐⭐⭐⭐ </label>
-                </div>
-
-                <div class="flex items-center">
-                  <input onClick="applyFilter(this)" type="radio" id="filter-mobile-category-4" name="rating" value="5" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                  <label for="filter-mobile-category-4" class="ml-3 min-w-0 flex-1 text-gray-500"> ⭐⭐⭐⭐⭐ </label>
-                </div>
+              <div class="flex flex-row justify-evenly">
+                <input onClick="applyFilter(this)" type="radio" id="star1" name="rating" value="1" hidden>
+                <label for="star1" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                    {{-- <path @if({{ Request::input('rating') >= 1}}) fill="#FECE3C" @else  fill="white" @endif stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/> --}}
+                  </svg>
+                </label>
+                <input onClick="applyFilter(this)" type="radio" id="star2" name="rating" value="2" hidden>
+                <label for="star2" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+                </label>
+                <input onClick="applyFilter(this)" type="radio" id="star3" name="rating" value="3" hidden>
+                <label for="star3" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+                </label>
+                <input onClick="applyFilter(this)" type="radio" id="star4" name="rating" value="4" hidden>
+                <label for="star4" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+                </label>
+                <input onClick="applyFilter(this)" type="radio" id="star5" name="rating" value="5" hidden>
+                <label for="star5" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+                </label>
               </div>
             </form>
           </div>
@@ -168,31 +175,38 @@
             </h3>
             <!-- Filter section, show/hide based on section state. -->
             <form id="filters_form" action="{{route('applyFilter')}}" method="get" class="pt-6" id="filter-section-1">
-              <div class="space-y-4">
-                <div class="flex items-center">
-                    <input onClick="applyFilter(this)" type="radio" id="filter-category-0" name="rating" value="1" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                    <label for="filter-category-0" class="ml-3 text-sm text-gray-600"> ⭐ </label>
-                  </div>
-  
-                  <div class="flex items-center">
-                    <input onClick="applyFilter(this)" type="radio" id="filter-category-1" name="rating" value="2" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                    <label for="filter-category-1" class="ml-3 text-sm text-gray-600"> ⭐⭐ </label>
-                  </div>
-  
-                  <div class="flex items-center">
-                    <input onClick="applyFilter(this)" type="radio" id="filter-category-2" name="rating" value="3" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                    <label for="filter-category-2" class="ml-3 text-sm text-gray-600"> ⭐⭐⭐ </label>
-                  </div>
-  
-                  <div class="flex items-center">
-                    <input onClick="applyFilter(this)" type="radio" id="filter-category-3" name="rating" value="4" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                    <label for="filter-category-3" class="ml-3 text-sm text-gray-600"> ⭐⭐⭐⭐ </label>
-                  </div>
-  
-                  <div class="flex items-center">
-                    <input onClick="applyFilter(this)" type="radio" id="filter-category-4" name="rating" value="5" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                    <label for="filter-category-4" class="ml-3 text-sm text-gray-600"> ⭐⭐⭐⭐⭐ </label>
-                  </div>
+              <div class="flex flex-row justify-evenly">
+                <input onClick="applyFilter(this)" type="radio" id="star1" name="rating" value="1" hidden>
+                <label for="star1" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                    {{-- <path @if({{ Request::input('rating') >= 1}}) fill="#FECE3C" @else  fill="white" @endif stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/> --}}
+                  </svg>
+                </label>
+                <input onClick="applyFilter(this)" type="radio" id="star2" name="rating" value="2" hidden>
+                <label for="star2" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+                </label>
+                <input onClick="applyFilter(this)" type="radio" id="star3" name="rating" value="3" hidden>
+                <label for="star3" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+                </label>
+                <input onClick="applyFilter(this)" type="radio" id="star4" name="rating" value="4" hidden>
+                <label for="star4" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+                </label>
+                <input onClick="applyFilter(this)" type="radio" id="star5" name="rating" value="5" hidden>
+                <label for="star5" class="cursor-pointer"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 51 48">
+                    <path fill="white" stroke="black" stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                  </svg>
+                </label>
               </div>
             </form>
           </div>

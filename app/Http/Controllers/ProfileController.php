@@ -42,6 +42,7 @@ class ProfileController extends Controller
             $address->zip = $request->input('zip-code');
             $address->province = $request->input('province');
             $address->save();
+            $user->address_id = $address->id;
             $user->save();
         } else {
             $address = new Address;

@@ -33,7 +33,7 @@
             </form>
           </nav>
         </div>
-        <div class="w-full flex justify-between p-10">
+        <div class="w-full flex justify-between">
             @yield('dash_content')
         </div>
       </div>
